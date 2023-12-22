@@ -1,3 +1,6 @@
+# 划分数据集
+python tools/misc/coco_split.py --json data/arch/result.json --out-dir data/arch/ --ratios 0.8 0.2
+
 #　训练
 python tools/train.py configs/yolov5/DR/yolov5_s-v61_syncbn_fast_8xb16-300e_coco.py
 

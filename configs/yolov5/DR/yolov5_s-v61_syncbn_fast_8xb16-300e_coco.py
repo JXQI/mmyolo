@@ -70,6 +70,10 @@ custom_hooks = [
 ]
 data_root = 'data/ma'
 dataset_type = 'YOLOv5CocoDataset'
+class_name = ('MA', )
+num_classes = len(class_name)
+metainfo = dict(classes=class_name, palette=[(20, 220, 60)])
+
 deepen_factor = 0.33
 default_hooks = dict(
     checkpoint=dict(
@@ -244,6 +248,7 @@ test_dataloader = dict(
             type='BatchShapePolicy'),
         data_prefix=dict(img='images/'),
         data_root=data_root,
+        metainfo=metainfo,
         pipeline=[
             dict(backend_args=None, type='LoadImageFromFile'),
             dict(scale=(
@@ -323,6 +328,7 @@ train_dataloader = dict(
         ann_file=train_ann_file,
         data_prefix=dict(img=train_data_prefix),
         data_root=data_root,
+        metainfo=metainfo,
         filter_cfg=dict(filter_empty_gt=False, min_size=32),
         pipeline=[
             dict(backend_args=None, type='LoadImageFromFile'),
@@ -434,6 +440,7 @@ val_dataloader = dict(
             type='BatchShapePolicy'),
         data_prefix=dict(img=val_data_prefix),
         data_root=data_root,
+        metainfo=metainfo,
         pipeline=[
             dict(backend_args=None, type='LoadImageFromFile'),
             dict(scale=(
